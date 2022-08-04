@@ -1,0 +1,20 @@
+﻿<Window x:Class="NewBankProgect.NewAccaunt"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NewBankProgect"
+        mc:Ignorable="d"
+        Title="Создпние нового акаунта" Height="250" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Имя нового пользователя" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBox Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" x:Name="NameAccaunt"/>
+        <Button Grid.Row="2" Margin="0,0,150,0" Content="Создать" x:Name="Input" FontSize="18"/>
+        <Button Grid.Row="2" Margin="150,0,0,0" x:Name="Output" Content="Отмена" FontSize="18"/>
+    </Grid>
+</Window>

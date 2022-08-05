@@ -70,7 +70,7 @@ from UserTable";
             DataRowView row = (DataRowView)PeopleDataTeble.SelectedItem;
             ShetWiuvWindow shetWiuv = new ShetWiuvWindow(row);
             shetWiuv.Show();
-            
+
         }
         private void Hersing(object sender, RoutedEventArgs e)
         {

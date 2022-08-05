@@ -21,6 +21,7 @@ namespace NewBankProgect
     /// </summary>
     public partial class ShetWiuvWindow : Window
     {
+        DataTable table;
         public ShetWiuvWindow() => InitializeComponent();
         public ShetWiuvWindow(DataRowView row) : this()
         {
@@ -31,15 +32,15 @@ namespace NewBankProgect
                 InitialCatalog = "BankSistemBD"
             };
             var sqlConect = new SqlConnection(conect.ConnectionString);
-            var table = new DataTable();
+            table = new DataTable();
             var sqlAdapter = new SqlDataAdapter();
             #endregion
             string str = Convert.ToString(row[1]);
             var comand = @"Select Accaunt.Money as 'Деньги',
 Accaunt.Stavka as 'ставка',
 Accaunt.Deposite as 'депозит'
-from Accaunt WHERE Accaunt.AccauntNumber = "+str;
-            
+from Accaunt WHERE Accaunt.AccauntNumber = " + str;
+
             sqlAdapter.SelectCommand = new SqlCommand(comand, sqlConect);
             sqlAdapter.Fill(table);
 
@@ -48,7 +49,8 @@ from Accaunt WHERE Accaunt.AccauntNumber = "+str;
 
         private void create(object sender, RoutedEventArgs e)
         {
-            NewShet newShet = new NewShet();
+            DataRow dataRow = table.NewRow();
+            NewShet newShet = new NewShet(dataRow);
             newShet.ShowDialog();
         }
 

@@ -5,16 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NewBankProgect"
         mc:Ignorable="d"
-        Title="Создпние нового акаунта" Height="250" Width="300">
-    <Grid>
+        Title="Создпние нового акаунта" Height="180" Width="300">
+    <Grid  Background="#FFB9C4F3">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <TextBlock Text="Имя нового пользователя" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <TextBox Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" x:Name="NameAccaunt"/>
-        <Button Grid.Row="2" Margin="0,0,150,0" Content="Создать" x:Name="Input" FontSize="18"/>
-        <Button Grid.Row="2" Margin="150,0,0,0" x:Name="Output" Content="Отмена" FontSize="18"/>
+        <TextBox Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" x:Name="NameAccaunt" Margin="15,0,15,0" />
+
+        <Button Grid.Row="2" Margin="15,15,165,15" Content="Создать" x:Name="Input" FontSize="18"/>
+        <Button Grid.Row="2" Margin="165,15,15,15" x:Name="Output" Content="Отмена" FontSize="18"/>
     </Grid>
 </Window>

@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NewBankProgect"
         mc:Ignorable="d"
-        Title="Window3" Height="300" Width="600">
-    <Grid>
+        Title="Новый счет" Height="300" Width="600">
+    <Grid  Background="#FFB9C4F3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
@@ -17,23 +17,23 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Деньги" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" />
-        <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="18"/>
+        <TextBlock Text="Деньги" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
+        <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="18" x:Name="Money"/>
 
         <TextBlock Text="Ставка" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
-        <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="18"/>
+        <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="18" x:Name="Stavka"/>
 
         <TextBlock Text="Депозит" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
-        <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="18"/>
-        
+        <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="18" x:Name="Deposite"/>
+
         <TextBlock Text="Счет или кредит" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
-        
-        <CheckBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        
-        <Button Grid.Column="1" Grid.Row="4" Content="Создать" FontSize="18" Margin="15"/>
-        <Button Grid.Column="0" Grid.Row="4" Content="Отмена" FontSize="18" Margin="15"/>
+
+        <CheckBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="Raiter"/>
+
+        <Button Grid.Column="1" Grid.Row="4" Content="Создать" FontSize="18" Margin="15" x:Name="Create"/>
+        <Button Grid.Column="0" Grid.Row="4" Content="Отмена" FontSize="18" Margin="15" x:Name="Dispose"/>
 
 
     </Grid>

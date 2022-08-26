@@ -1,20 +1,7 @@
-﻿using Microsoft.SqlServer.Server;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace NewBankProgect
 {
@@ -26,9 +13,11 @@ namespace NewBankProgect
         SqlDataAdapter sqlAdapter;
         DataTable table;
         DataRowView row;
+        Random random = new Random();
         public MainWindow()
         {
             InitializeComponent();
+
 
             #region иницилизация
             var conect = new SqlConnectionStringBuilder
@@ -44,27 +33,35 @@ namespace NewBankProgect
             #region SELECT
             var comand = @"SELECT UserTable.Username AS 'Имя пользователя',
 UserTable.Useraccauntid as 'Номер пользователя'
-from UserTable";
+from UserTable ";
             sqlAdapter.SelectCommand = new SqlCommand(comand, sqlConect);
             #endregion
 
             #region delete
-
             comand = "DELETE FROM UserTable WHERE Username = @Username";
 
             sqlAdapter.DeleteCommand = new SqlCommand(comand, sqlConect);
-            sqlAdapter.DeleteCommand.Parameters.Add("@Username", SqlDbType.Char, 4, "Username");
+            sqlAdapter.DeleteCommand.Parameters.Add("@Username", SqlDbType.NVarChar, 50, "Username");
 
             #endregion
 
             #region INSETR
-            var com = @"INSERT INTO UserTable(Username) values (@Username); SET @Useraccauntid=ABS(CHECKSUM(NEWID()),@Id= @@IDENTITY;";
+            var com = @"INSERT INTO UserTable(Useraccauntid,Username) values (@Useraccauntid,@Username)";
             sqlAdapter.InsertCommand = new SqlCommand(com, sqlConect);
             #endregion
-
+            #region UPDATE
+            //comand = "UPDATE UserTable SET Username=@Username, Useraccauntid=@Useraccauntid WHERE Id=@id";
+            //sqlAdapter.UpdateCommand = new SqlCommand(comand, sqlConect);
+            //sqlAdapter.UpdateCommand.Parameters.Add("@id", SqlDbType.Int, 0, "Id").SourceVersion = DataRowVersion.Original;
+            //sqlAdapter.UpdateCommand.Parameters.Add("@Username", SqlDbType.NVarChar, 50, "Username");
+            //sqlAdapter.UpdateCommand.Parameters.Add("@Useraccauntid", SqlDbType.Int);
+            #endregion
             sqlAdapter.Fill(table);
             PeopleDataTeble.DataContext = table.DefaultView;
         }
+        /// <summary>
+        /// Загрузка счутов акаунта
+        /// </summary>
         private void Uctive(object sender, RoutedEventArgs e)
         {
             DataRowView row = (DataRowView)PeopleDataTeble.SelectedItem;
@@ -72,6 +69,9 @@ from UserTable";
             shetWiuv.Show();
 
         }
+        /// <summary>
+        /// Создание нового пользователя
+        /// </summary>
         private void Hersing(object sender, RoutedEventArgs e)
         {
             DataRow r = table.NewRow();
@@ -80,9 +80,14 @@ from UserTable";
             if (newAccaunt.DialogResult.Value)
             {
                 table.Rows.Add(r);
+                sqlAdapter.InsertCommand.Parameters.AddWithValue("@Username", newAccaunt.NameAccaunt.Text);
+                sqlAdapter.InsertCommand.Parameters.AddWithValue("@Useraccauntid", newAccaunt.rand);
                 sqlAdapter.Update(table);
             }
         }
+        /// <summary>
+        /// Удаление пользователя
+        /// </summary>
         private void Remuve(object sender, RoutedEventArgs e)
         {
             row = (DataRowView)PeopleDataTeble.SelectedItem;
@@ -95,7 +100,6 @@ from UserTable";
             {
                 MessageBox.Show(ee.Message);
             }
-
         }
     }
 }

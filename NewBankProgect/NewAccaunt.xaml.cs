@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace NewBankProgect
 {
@@ -7,7 +8,8 @@ namespace NewBankProgect
     /// </summary>
     public partial class NewAccaunt : Window
     {
-
+        public int rand;
+        Random random = new Random();
         public NewAccaunt()
         {
             InitializeComponent();
@@ -17,7 +19,9 @@ namespace NewBankProgect
             Output.Click += delegate { DialogResult = false; };
             Input.Click += delegate
             {
+                rand = random.Next(10000000, 100000000);
                 dataRow[0] = NameAccaunt.Text;
+                dataRow[1] = rand;
                 DialogResult = !false;
             };
         }

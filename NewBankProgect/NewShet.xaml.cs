@@ -7,20 +7,19 @@ namespace NewBankProgect
     /// </summary>
     public partial class NewShet : Window
     {
-        bool v;
+        public bool v;
         public NewShet()
         {
             InitializeComponent();
         }
-        public NewShet(System.Data.DataRow dataRow) : this()
+        public NewShet(System.Data.DataRow dataRow, string str) : this()
         {
             Dispose.Click += delegate { DialogResult = false; };
             Create.Click += delegate
             {
-                dataRow["Money"] = Money.Text;
-                dataRow["Kredit"] = v ? 1 : 0;
-                dataRow["Stavka"] = Stavka.Text;
-                dataRow["Deposite"] = Deposite.Text;
+                dataRow[0] = Money.Text;
+                dataRow[1] = Stavka.Text;
+                dataRow[2] = Deposite.Text;
                 DialogResult = !false;
             };
             Raiter.Click += delegate { v ^= true; };

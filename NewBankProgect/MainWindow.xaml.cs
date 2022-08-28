@@ -10,14 +10,12 @@ namespace NewBankProgect
     /// </summary>
     public partial class MainWindow : Window
     {
-        SqlDataAdapter sqlAdapter;
-        DataTable table;
+        readonly SqlDataAdapter sqlAdapter;
+        readonly DataTable table;
         DataRowView row;
-        Random random = new Random();
         public MainWindow()
         {
             InitializeComponent();
-
 
             #region иницилизация
             var conect = new SqlConnectionStringBuilder

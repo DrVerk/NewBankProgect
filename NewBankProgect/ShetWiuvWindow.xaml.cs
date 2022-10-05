@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data;
+using System.Data.Entity;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows;
 
 namespace NewBankProgect
@@ -10,61 +12,25 @@ namespace NewBankProgect
     /// </summary>
     public partial class ShetWiuvWindow : Window
     {
-        DataTable table;
-        SqlDataAdapter sqlAdapter;
-        string str;
+        readonly Model1Container model1;
+        readonly int str;
         public ShetWiuvWindow() => InitializeComponent();
-        public ShetWiuvWindow(DataRowView row) : this()
+        public ShetWiuvWindow(UserTable userTable, Model1Container model) : this()
         {
-            #region иницилизация
-            var conect = new SqlConnectionStringBuilder
-            {
-                DataSource = @"(localdb)\MSSQLLocalDB",
-                InitialCatalog = "BankSistemBD"
-            };
-            var sqlConect = new SqlConnection(conect.ConnectionString);
-            table = new DataTable();
-            sqlAdapter = new SqlDataAdapter();
-            #endregion
-
-            str = Convert.ToString(row[1]);
-
-            #region Select
-            var comand = @"Select Accaunt.Money as 'Деньги',
-Accaunt.Stavka as 'ставка',
-Accaunt.Deposite as 'депозит'
-from Accaunt WHERE Accaunt.AccauntNumber = " + str;
-
-            sqlAdapter.SelectCommand = new SqlCommand(comand, sqlConect);
-            #endregion
-
-            #region Insert
-            comand = "INSERT INTO Accaunt (Money,Kredit,Stavka,Deposite,AccauntNumber) values(@Money,@Kredit,@Stavka,@Deposite,@AccauntNumber)";
-            sqlAdapter.InsertCommand = new SqlCommand(comand, sqlConect);
-            #endregion
-            sqlAdapter.Fill(table);
-            ShetWiuwer.DataContext = table.DefaultView;
+            model1 = model;
+            str = Convert.ToInt32(userTable.Useraccauntid);
+            ShetWiuwer.DataContext = model1.AccauntSet.Local.ToBindingList().Where(e => e.AccauntNumber == str);
         }
         /// <summary>
         /// Создать счет
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void create(object sender, RoutedEventArgs e)
+        private void Create(object sender, RoutedEventArgs e)
         {
-            DataRow dataRow = table.NewRow();
-            NewShet newShet = new NewShet(dataRow, str);
+            NewShet newShet = new NewShet(model1, str);
             newShet.ShowDialog();
-            if (newShet.DialogResult.Value)
-            {
-                table.Rows.Add(dataRow);
-                sqlAdapter.InsertCommand.Parameters.AddWithValue("@Money", newShet.Money.Text);
-                sqlAdapter.InsertCommand.Parameters.AddWithValue("@Kredit", newShet.v);
-                sqlAdapter.InsertCommand.Parameters.AddWithValue("@Stavka", newShet.Stavka.Text);
-                sqlAdapter.InsertCommand.Parameters.AddWithValue("@Deposite", newShet.Deposite.Text);
-                sqlAdapter.InsertCommand.Parameters.AddWithValue("@AccauntNumber", str);
-                sqlAdapter.Update(table);
-            }
+            ShetWiuwer.DataContext = model1.AccauntSet.Local.ToBindingList().Where(ex => ex.AccauntNumber == str);
         }
         /// <summary>
         /// Удалить счет
@@ -73,6 +39,17 @@ from Accaunt WHERE Accaunt.AccauntNumber = " + str;
         /// <param name="e"></param>
         private void Remuve(object sender, RoutedEventArgs e)
         {
+            if (ShetWiuwer.SelectedItem != null)
+            {
+                try
+                {
+                    model1.AccauntSet.Remove((Accaunt)ShetWiuwer.SelectedItem);
+                }
+                catch (Exception ee)
+                {
+                    MessageBox.Show(ee.Message);
+                }
+            }
 
         }
     }

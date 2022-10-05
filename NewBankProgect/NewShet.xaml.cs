@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace NewBankProgect
 {
@@ -12,14 +13,16 @@ namespace NewBankProgect
         {
             InitializeComponent();
         }
-        public NewShet(System.Data.DataRow dataRow, string str) : this()
+        public NewShet(Model1Container model, int str) : this()
         {
             Dispose.Click += delegate { DialogResult = false; };
             Create.Click += delegate
             {
-                dataRow[0] = Money.Text;
-                dataRow[1] = Stavka.Text;
-                dataRow[2] = Deposite.Text;
+                model.AccauntSet.Add(
+                    new Accaunt(str, Convert.ToInt32(v),
+                    Convert.ToInt32(Money.Text),
+                    Convert.ToInt32(Stavka.Text),
+                    Convert.ToInt32(Deposite.Text)));
                 DialogResult = !false;
             };
             Raiter.Click += delegate { v ^= true; };

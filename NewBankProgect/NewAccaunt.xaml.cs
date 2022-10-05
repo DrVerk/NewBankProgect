@@ -8,22 +8,24 @@ namespace NewBankProgect
     /// </summary>
     public partial class NewAccaunt : Window
     {
+
         public int rand;
-        Random random = new Random();
+        readonly Random random = new Random();
         public NewAccaunt()
         {
             InitializeComponent();
         }
-        public NewAccaunt(System.Data.DataRow dataRow) : this()
+        public NewAccaunt(Model1Container model1) : this()
         {
             Output.Click += delegate { DialogResult = false; };
             Input.Click += delegate
             {
                 rand = random.Next(10000000, 100000000);
-                dataRow[0] = NameAccaunt.Text;
-                dataRow[1] = rand;
+                model1.UserTable.Add(new UserTable(NameAccaunt.Text, rand));
                 DialogResult = !false;
+
             };
+
         }
     }
 }

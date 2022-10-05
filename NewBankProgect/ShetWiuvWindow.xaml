@@ -21,7 +21,7 @@
                             </StackPanel>
                         </MenuItem.Header>
                     </MenuItem>
-                    <MenuItem Click="create">
+                    <MenuItem Click="Create">
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">
                                 <iconPacks:PackIconEvaIcons Kind="FileAdd"/>

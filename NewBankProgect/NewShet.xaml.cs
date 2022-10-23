@@ -8,7 +8,7 @@ namespace NewBankProgect
     /// </summary>
     public partial class NewShet : Window
     {
-        public bool v;
+        public bool v=false;
         public NewShet()
         {
             InitializeComponent();
@@ -18,14 +18,24 @@ namespace NewBankProgect
             Dispose.Click += delegate { DialogResult = false; };
             Create.Click += delegate
             {
-                model.AccauntSet.Add(
-                    new Accaunt(str, Convert.ToInt32(v),
-                    Convert.ToInt32(Money.Text),
-                    Convert.ToInt32(Stavka.Text),
-                    Convert.ToInt32(Deposite.Text)));
+                if (v)
+                    model.KreditSet.Add(
+                        new Kredit(str,
+                        Convert.ToInt32(Money.Text),
+                        Convert.ToInt32(Deposite.Text)));
+                else
+                    model.AccauntSet.Add(
+                        new Accaunt(str,
+                        Convert.ToInt32(Money.Text),
+                        Convert.ToInt32(Stavka.Text)));
                 DialogResult = !false;
             };
-            Raiter.Click += delegate { v ^= true; };
+            Raiter.Click += delegate
+            {
+                v ^= true;
+                if (v) { Deposite.Visibility = Visibility.Visible; Stavka.Visibility = Visibility.Hidden; }
+                else { Deposite.Visibility = Visibility.Hidden; Stavka.Visibility = Visibility.Visible; }
+            };
         }
     }
 }

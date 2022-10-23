@@ -26,7 +26,7 @@
         <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="18" x:Name="Stavka"/>
 
         <TextBlock Text="Депозит" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
-        <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="18" x:Name="Deposite"/>
+        <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="18" x:Name="Deposite" Visibility="Hidden"/>
 
         <TextBlock Text="Счет или кредит" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
 

@@ -35,6 +35,7 @@
         <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AccauntSet" EntityType="Model1.Accaunt" />
           <EntitySet Name="UserTable" EntityType="Model1.UserTable" />
+          <EntitySet Name="KreditSet" EntityType="Model1.Kredit" />
         </EntityContainer>
         <EntityType Name="Accaunt">
           <Key>
@@ -42,10 +43,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AccauntNumber" Type="Int32" Nullable="false" />
-          <Property Name="Kredit" Type="Int32" Nullable="false" />
           <Property Name="Money" Type="Int32" Nullable="false" />
           <Property Name="Stavka" Type="Int32" Nullable="false" />
-          <Property Name="Deposite" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="UserTable">
           <Key>
@@ -54,6 +53,15 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Useraccauntid" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kredit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccauntNumber" Type="Int32" Nullable="false" />
+          <Property Name="Money" Type="Int32" Nullable="false" />
+          <Property Name="Deposite" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -66,10 +74,8 @@
           <EntitySetMapping Name="AccauntSet">
             <EntityTypeMapping TypeName="Model1.Accaunt">
               <MappingFragment StoreEntitySet="Accaunt">
-                <ScalarProperty Name="Deposite" ColumnName="Deposite" />
                 <ScalarProperty Name="Stavka" ColumnName="Stavka" />
                 <ScalarProperty Name="Money" ColumnName="Money" />
-                <ScalarProperty Name="Kredit" ColumnName="Kredit" />
                 <ScalarProperty Name="AccauntNumber" ColumnName="AccauntNumber" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

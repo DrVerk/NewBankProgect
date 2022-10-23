@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.Entity;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
 
@@ -19,7 +18,9 @@ namespace NewBankProgect
         {
             model1 = model;
             str = Convert.ToInt32(userTable.Useraccauntid);
+            Title = "Счета открытые пользователем "+userTable.Username;
             ShetWiuwer.DataContext = model1.AccauntSet.Local.ToBindingList().Where(e => e.AccauntNumber == str);
+            KreditWiuwer.DataContext = model1.KreditSet.Local.ToBindingList().Where(e => e.AccauntNumber == str);
         }
         /// <summary>
         /// Создать счет
@@ -31,6 +32,7 @@ namespace NewBankProgect
             NewShet newShet = new NewShet(model1, str);
             newShet.ShowDialog();
             ShetWiuwer.DataContext = model1.AccauntSet.Local.ToBindingList().Where(ex => ex.AccauntNumber == str);
+            KreditWiuwer.DataContext = model1.KreditSet.Local.ToBindingList().Where(ex => ex.AccauntNumber == str);
         }
         /// <summary>
         /// Удалить счет

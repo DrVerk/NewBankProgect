@@ -8,30 +8,36 @@
         mc:Ignorable="d"
         Title="Счета открытые пользователем" Height="450" Width="800">
     <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
         <DataGrid x:Name="ShetWiuwer" Background="#FFB9C4F3" 
                   AutoGenerateColumns="True" 
-                  ItemsSource="{Binding}">
-            <DataGrid.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Click="Remuve">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <iconPacks:PackIconEvaIcons Kind="FileRemove"/>
-                                <TextBlock>Удалить</TextBlock>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
-                    <MenuItem Click="Create">
-                        <MenuItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <iconPacks:PackIconEvaIcons Kind="FileAdd"/>
-                                <TextBlock>Создать</TextBlock>
-                            </StackPanel>
-                        </MenuItem.Header>
-                    </MenuItem>
-                </ContextMenu>
-            </DataGrid.ContextMenu>
+                  ItemsSource="{Binding}" Grid.ColumnSpan="1">
         </DataGrid>
-
+        <DataGrid x:Name="KreditWiuwer" Background="#FFB9C4F3" 
+                  AutoGenerateColumns="True" 
+                  ItemsSource="{Binding}" Grid.Column="1"/>
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem Click="Remuve">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconEvaIcons Kind="FileRemove"/>
+                            <TextBlock>Удалить</TextBlock>
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Click="Create">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconEvaIcons Kind="FileAdd"/>
+                            <TextBlock>Создать</TextBlock>
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+            </ContextMenu>
+        </Grid.ContextMenu>
     </Grid>
 </Window>

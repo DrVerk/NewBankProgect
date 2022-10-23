@@ -12,18 +12,18 @@ namespace NewBankProgect
     using System;
     using System.Collections.Generic;
     
-    public partial class Accaunt
+    public partial class Kredit
     {
-        public Accaunt(int accauntNumber, int money, int stavka)
+        public Kredit(int accauntNumber, int money, int deposite)
         {
             AccauntNumber = accauntNumber;
             Money = money;
-            Stavka = stavka;
+            Deposite = deposite;
         }
 
         public int Id { get; set; }
         public int AccauntNumber { get; set; }
         public int Money { get; set; }
-        public int Stavka { get; set; }
+        public int Deposite { get; set; }
     }
 }

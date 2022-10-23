@@ -27,5 +27,6 @@ namespace NewBankProgect
     
         public virtual DbSet<Accaunt> AccauntSet { get; set; }
         public virtual DbSet<UserTable> UserTable { get; set; }
+        public virtual DbSet<Kredit> KreditSet { get; set; }
     }
 }

@@ -21,9 +21,9 @@ namespace NewBankProgect
             Stavka = stavka;
         }
 
+        public int Stavka { get; set; }
         public int Id { get; set; }
         public int AccauntNumber { get; set; }
         public int Money { get; set; }
-        public int Stavka { get; set; }
     }
 }

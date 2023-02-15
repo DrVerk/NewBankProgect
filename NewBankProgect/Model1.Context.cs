@@ -25,8 +25,8 @@ namespace NewBankProgect
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Accaunt> AccauntSet { get; set; }
         public virtual DbSet<UserTable> UserTable { get; set; }
+        public virtual DbSet<Accaunt> AccauntSet { get; set; }
         public virtual DbSet<Kredit> KreditSet { get; set; }
     }
 }

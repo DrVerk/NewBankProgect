@@ -21,9 +21,9 @@ namespace NewBankProgect
             Deposite = deposite;
         }
 
+        public int Deposite { get; set; }
         public int Id { get; set; }
         public int AccauntNumber { get; set; }
         public int Money { get; set; }
-        public int Deposite { get; set; }
     }
 }

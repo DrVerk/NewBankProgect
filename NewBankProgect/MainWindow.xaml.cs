@@ -1,55 +1,29 @@
-﻿using System;
+﻿using NewBankProgect.Logic;
+using System;
 using System.Data.Entity;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace NewBankProgect
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window,IViewMainWindow
     {
-        readonly Model1Container model1;
+        MainWindowController controller;
+
+        public DataGrid grid { get => PeopleDataTeble; set => PeopleDataTeble=value; }
+
         public MainWindow()
         {
             InitializeComponent();
+            controller= new MainWindowController(this);
 
-            model1 = new Model1Container();
-
-            PeopleDataTeble.DataContext = model1.UserTable.Local.ToBindingList();
+            Uctive.Click += (e,s)=>controller.Uctive();
+            Hersing.Click += (e, s) => controller.Hersing();
+            Remuve.Click += (e, s) => controller.Remuve();
         }
-        /// <summary>
-        /// Загрузка счутов акаунта
-        /// </summary>
-        private void Uctive(object sender, RoutedEventArgs e)
-        {
-            ShetWiuvWindow shetWiuv = new ShetWiuvWindow((UserTable)PeopleDataTeble.SelectedItem, model1);
-            shetWiuv.Show();
-
-        }
-        /// <summary>
-        /// Создание нового пользователя
-        /// </summary>
-        private void Hersing(object sender, RoutedEventArgs e)
-        {
-            NewAccaunt newAccaunt = new NewAccaunt(model1);
-            newAccaunt.ShowDialog();
-
-        }
-        /// <summary>
-        /// Удаление пользователя
-        /// </summary>
-        private void Remuve(object sender, RoutedEventArgs e)
-        {
-            if (PeopleDataTeble.SelectedItem != null)
-            {
-                try
-                {
-                    model1.UserTable.Remove((UserTable)PeopleDataTeble.SelectedItem);
-                }
-                catch (Exception ee) { MessageBox.Show(ee.Message); }
-            }
-
-        }
+       
     }
 }

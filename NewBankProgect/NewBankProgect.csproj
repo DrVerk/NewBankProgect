@@ -231,6 +231,8 @@
     <Compile Include="Kredit.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Logic\IViewMainWindow.cs" />
+    <Compile Include="Logic\MainWindowController.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

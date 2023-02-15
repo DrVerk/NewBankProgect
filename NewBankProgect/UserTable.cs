@@ -14,12 +14,6 @@ namespace NewBankProgect
     
     public partial class UserTable
     {
-        public UserTable(string username, int useraccauntid)
-        {
-            Username = username;
-            Useraccauntid = useraccauntid;
-        }
-
         public int Id { get; set; }
         public string Username { get; set; }
         public int Useraccauntid { get; set; }

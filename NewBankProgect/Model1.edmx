@@ -33,18 +33,18 @@
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AccauntSet" EntityType="Model1.Accaunt" />
           <EntitySet Name="UserTable" EntityType="Model1.UserTable" />
+          <EntitySet Name="AccauntSet" EntityType="Model1.Accaunt" />
           <EntitySet Name="KreditSet" EntityType="Model1.Kredit" />
         </EntityContainer>
         <EntityType Name="Accaunt">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Stavka" Type="Int32" Nullable="false" />
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AccauntNumber" Type="Int32" Nullable="false" />
           <Property Name="Money" Type="Int32" Nullable="false" />
-          <Property Name="Stavka" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="UserTable">
           <Key>
@@ -58,10 +58,10 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Deposite" Type="Int32" Nullable="false" />
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AccauntNumber" Type="Int32" Nullable="false" />
           <Property Name="Money" Type="Int32" Nullable="false" />
-          <Property Name="Deposite" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -71,22 +71,19 @@
         <Alias Key="Model" Value="Model1" />
         <Alias Key="Target" Value="Model1.Store" />
         <EntityContainerMapping CdmEntityContainer="Model1Container" StorageEntityContainer="Model1StoreContainer">
-          <EntitySetMapping Name="AccauntSet">
-            <EntityTypeMapping TypeName="Model1.Accaunt">
-              <MappingFragment StoreEntitySet="Accaunt">
-                <ScalarProperty Name="Stavka" ColumnName="Stavka" />
-                <ScalarProperty Name="Money" ColumnName="Money" />
-                <ScalarProperty Name="AccauntNumber" ColumnName="AccauntNumber" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="UserTable">
             <EntityTypeMapping TypeName="Model1.UserTable">
               <MappingFragment StoreEntitySet="UserTable">
                 <ScalarProperty Name="Useraccauntid" ColumnName="Useraccauntid" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccauntSet">
+            <EntityTypeMapping TypeName="IsTypeOf(Model1.Accaunt)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+              <MappingFragment StoreEntitySet="Accaunt">
+                <ScalarProperty Name="Stavka" ColumnName="Stavka" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

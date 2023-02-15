@@ -21,7 +21,7 @@ namespace NewBankProgect
             Input.Click += delegate
             {
                 rand = random.Next(10000000, 100000000);
-                model1.UserTable.Add(new UserTable(NameAccaunt.Text, rand));
+                model1.UserTable.Add(new UserTable { Username=NameAccaunt.Text,Useraccauntid=rand});
                 DialogResult = !false;
 
             };
